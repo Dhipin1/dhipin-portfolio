@@ -79,7 +79,8 @@ const HeroSection = () => {
                 variants={textAnimation}
                 className="block text-white/60 text-2xl md:text-4xl"
               >
-I build web that builds brands.              </motion.span>
+                MSc Artificial Intelligence student at Cochin University of Science & Technology (CUSAT)
+              </motion.span>
             </motion.h1>
           </div>
 
@@ -87,7 +88,8 @@ I build web that builds brands.              </motion.span>
             variants={itemAnimation}
             className="text-base sm:text-md text-muted-foreground leading-relaxed max-w-2xl mx-auto"
           >
-           Full-stack builder creating digital experiences that respect humans and scale with clarity. Accessibility is my north star.
+            I design and build AIML and deep learning solutions for computer vision and predictive modelling.
+            Completed projects such as Employee Salary Prediction, Autism Detection, Fraud Detection in E-Commerce and GPS Outlier Detection.
           </motion.p>
 
           <motion.div
@@ -104,9 +106,16 @@ I build web that builds brands.              </motion.span>
                 View Projects
               </Button>
             </Link>
-          </motion.div>
 
-     
+            <Link href={"/contact"}>
+              <Button
+                variant="outline"
+                className="rounded-full px-6 py-6 text-base transition-all duration-300 hover:scale-105 font-semibold"
+              >
+                Contact Me
+              </Button>
+            </Link>
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0 }}
@@ -117,6 +126,7 @@ I build web that builds brands.              </motion.span>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
           </motion.div>
         </motion.div>
+
         <SkillsShowcase />
       </div>
     </section>

@@ -1,7 +1,7 @@
-"use client"
+"use client";
+
 import React, { useState } from 'react';
 import { HiMenu, HiX } from 'react-icons/hi';
-import { Button } from '@/components/ui/button';
 import { config } from '@/config';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -15,19 +15,21 @@ const NavLink = ({ href, label, isMobile = false }) => {
     const isActive = pathname === href;
 
     return (
-        <Link
-            href={href}
-            className="relative"
-        >
+        <Link href={href} className="relative">
             <motion.span
-                className={`relative ${isMobile ? 'px-4 py-3 text-base' : 'px-4 py-2'} text-gray-300 hover:text-white transition-colors ${isActive ? 'text-white' : ''}`}
+                className={`relative ${
+                    isMobile ? 'px-4 py-3 text-base' : 'px-4 py-2'
+                } text-gray-300 hover:text-white transition-colors ${
+                    isActive ? 'text-white' : ''
+                }`}
                 whileHover={{ scale: isMobile ? 1 : 1.05 }}
                 whileTap={{ scale: 0.95 }}
             >
                 {label}
+
                 {isActive && (
                     <motion.div
-                        className="absolute inset-0 bg-secondary/30  rounded-lg backdrop-blur-sm"
+                        className="absolute inset-0 bg-secondary/30 rounded-lg backdrop-blur-sm"
                         layoutId="activeNavBackground"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -36,9 +38,7 @@ const NavLink = ({ href, label, isMobile = false }) => {
                             stiffness: 300,
                             damping: 30
                         }}
-                        style={{
-                            zIndex: -1
-                        }}
+                        style={{ zIndex: -1 }}
                     />
                 )}
             </motion.span>
@@ -52,14 +52,8 @@ const Logo = ({ isMobile = false }) => (
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
     >
-        <Link
-            href="/"
-            className="flex items-center space-x-2 hover:opacity-90 transition-opacity"
-        >
-            <motion.div
-                whileHover={{ opacity:0.5 }}
-                whileTap={{ scale: 0.95 }}
-            >
+        <Link href="/" className="flex items-center space-x-2 hover:opacity-90 transition-opacity">
+            <motion.div whileHover={{ opacity: 0.5 }} whileTap={{ scale: 0.95 }}>
                 <Image
                     src="/logo.png"
                     width={2000}
@@ -68,18 +62,23 @@ const Logo = ({ isMobile = false }) => (
                     className={`${isMobile ? 'w-10 h-10' : 'w-12 h-12 sm:w-14 sm:h-14'} rounded-full`}
                 />
             </motion.div>
+
             <motion.span
-                className={`text-gray-300 font-semibold ${isMobile ? 'hidden' : 'text-base sm:text-lg'}`}
+                className={`text-gray-300 font-semibold ${
+                    isMobile ? 'hidden' : 'text-base sm:text-lg'
+                }`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
             >
-                <span className="hidden sm:inline">{config.developer.name} | Devxora</span>
-                {/* <span className="sm:hidden">{config.developer.name}</span> */}
+                <span className="hidden sm:inline">{config.developer.name}</span>
             </motion.span>
         </Link>
     </motion.div>
 );
+
+// Removed Repo Button Fully
+const ContactButton = () => null;
 
 const Navigation = ({ isMobile = false, onLinkClick }) => (
     <motion.nav
@@ -102,33 +101,11 @@ const Navigation = ({ isMobile = false, onLinkClick }) => (
     </motion.nav>
 );
 
-const ContactButton = ({ isMobile = false, onLinkClick }) => (
-    <motion.div
-        className={`flex items-center ${isMobile ? 'w-full justify-center mt-4' : 'space-x-6'}`}
-        initial={{ opacity: 0, x: isMobile ? 0 : 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: isMobile ? 0.5 : 0.4, duration: 0.5 }}
-        onClick={onLinkClick}
-    >
-        <Link href={"https://github.com/huzaifahmedz/Huzaif-Ahmed-portfolio-fourth"} target='_blank' className={isMobile ? 'w-full' : ''}>
-            <Button className={`${isMobile ? 'w-full' : ''} rounded-2xl font-semibold bg-white text-gray-900 hover:bg-gray-200 text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3`}>
-                <span className="hidden sm:inline">Repo Inside!</span>
-                <span className="sm:hidden">Template</span>
-            </Button>
-        </Link>
-    </motion.div>
-);
-
 const Header = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-    const toggleMobileMenu = () => {
-        setIsMobileMenuOpen(!isMobileMenuOpen);
-    };
-
-    const closeMobileMenu = () => {
-        setIsMobileMenuOpen(false);
-    };
+    const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+    const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
     return (
         <>
@@ -141,26 +118,20 @@ const Header = () => {
                 <div className="container mx-auto flex items-center justify-between md:px-64 px-4 sm:px-6">
                     <Logo />
                     <Navigation />
-                    <div className="hidden md:block">
-                        <ContactButton />
-                    </div>
-                    
+
+                    {/* Removed Repo button here */}
+
                     {/* Mobile Menu Button */}
                     <button
                         onClick={toggleMobileMenu}
                         className="md:hidden p-2 text-gray-300 hover:text-white transition-colors"
                         aria-label="Toggle menu"
                     >
-                        {isMobileMenuOpen ? (
-                            <HiX className="w-6 h-6" />
-                        ) : (
-                            <HiMenu className="w-6 h-6" />
-                        )}
+                        {isMobileMenuOpen ? <HiX className="w-6 h-6" /> : <HiMenu className="w-6 h-6" />}
                     </button>
                 </div>
             </motion.header>
 
-            {/* Mobile Menu */}
             <AnimatePresence>
                 {isMobileMenuOpen && (
                     <>
@@ -173,7 +144,7 @@ const Header = () => {
                             className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40 md:hidden"
                             onClick={closeMobileMenu}
                         />
-                        
+
                         {/* Mobile Menu Panel */}
                         <motion.div
                             initial={{ x: '100%' }}
@@ -185,16 +156,13 @@ const Header = () => {
                             <div className="flex flex-col h-full p-6">
                                 {/* Mobile Logo */}
                                 <div className="mb-8">
-                                    <Logo isMobile={true} />
+                                    <Logo isMobile />
                                 </div>
 
                                 {/* Mobile Navigation */}
                                 <div className="flex-1">
-                                    <Navigation isMobile={true} onLinkClick={closeMobileMenu} />
+                                    <Navigation isMobile onLinkClick={closeMobileMenu} />
                                 </div>
-
-                                {/* Mobile Contact Button */}
-                                <ContactButton isMobile={true} onLinkClick={closeMobileMenu} />
                             </div>
                         </motion.div>
                     </>

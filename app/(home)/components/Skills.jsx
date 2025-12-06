@@ -107,7 +107,51 @@ const CategorySection = ({ category }) => (
 );
 
 const SkillsSection = () => {
-    const skills = config.skills;
+    // Prefer config.skills if present; otherwise fall back to a default tailored to you
+    const skillsFromConfig = config.skills && config.skills.length ? config.skills : [
+        {
+            title: "Machine Learning & Deep Learning",
+            icon: <HiCode />,
+            description: "Modeling, training and evaluation for academic and practical projects",
+            bgClass: "bg-blue-500/10",
+            iconClass: "text-blue-500",
+            skills: [
+                { name: "Supervised Learning (Regression/Classification)", level: "Advanced", hot: true },
+                { name: "Deep Learning (CNNs)", level: "Intermediate" },
+                { name: "TensorFlow / Keras", level: "Intermediate" },
+                { name: "Model Evaluation & Tuning", level: "Advanced" },
+                { name: "Explainable AI (Grad-CAM, SHAP)", level: "Intermediate" }
+            ]
+        },
+        {
+            title: "Programming & Data Engineering",
+            icon: <HiDatabase />,
+            description: "Core programming and data handling skills used across projects",
+            bgClass: "bg-emerald-500/10",
+            iconClass: "text-emerald-500",
+            skills: [
+                { name: "Python (NumPy, Pandas)", level: "Advanced", hot: true },
+                { name: "Scikit-Learn", level: "Advanced" },
+                { name: "Data Preprocessing & Feature Engineering", level: "Advanced" },
+                { name: "SQL / MongoDB", level: "Intermediate" },
+                { name: "Jupyter Notebook", level: "Advanced" }
+            ]
+        },
+        {
+            title: "Tools, Dev & Deployment",
+            icon: <HiCube />,
+            description: "Tools and workflows for reproducible experiments and deployment",
+            bgClass: "bg-orange-500/10",
+            iconClass: "text-orange-500",
+            skills: [
+                { name: "Git & GitHub", level: "Advanced", hot: true },
+                { name: "VS Code", level: "Expert" },
+                { name: "Docker (basic)", level: "Beginner" },
+                { name: "Linux basics / CLI", level: "Intermediate" },
+                { name: "Visualization (Matplotlib, Seaborn)", level: "Advanced" }
+            ]
+        }
+    ];
 
     return (
         <section className="py-24" id="skills">
@@ -135,8 +179,7 @@ const SkillsSection = () => {
                                 Technical Proficiency
                             </h2>
                             <p className="text-lg text-muted-foreground">
-                                A comprehensive overview of my technical expertise across various
-                                development domains and tools.
+                                A comprehensive overview of my technical expertise across machine learning, programming and tools.
                             </p>
                         </motion.div>
                     </div>
@@ -145,7 +188,7 @@ const SkillsSection = () => {
                         variants={containerAnimation}
                         className="space-y-16"
                     >
-                        {skills.map((category, index) => (
+                        {skillsFromConfig.map((category, index) => (
                             <CategorySection key={index} category={category} />
                         ))}
                     </motion.div>
